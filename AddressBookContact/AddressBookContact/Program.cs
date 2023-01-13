@@ -10,7 +10,7 @@ namespace AddressBookContact
     {
         static void Main(string[] args)
         {
-
+            Contact contact = new Contact();
         }
 
     }
