@@ -12,7 +12,7 @@ namespace AddressBookContact
         {
             Person person = new Person();
             person.AddContact();
-            Console.WriteLine("1.Add Contact\n2.Edit Contact");
+            Console.WriteLine("1.Add Contact\n2.Edit Contact\n3.Delete Contact");
             int Option = Convert.ToInt32(Console.ReadLine());
             switch (Option )
             {
@@ -21,6 +21,9 @@ namespace AddressBookContact
                     break;
                 case 2:
                     person.EditContact();
+                    break;
+                case 3:
+                    person.DeleteContact();
                     break;
             }
         }
