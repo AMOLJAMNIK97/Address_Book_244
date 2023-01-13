@@ -10,7 +10,8 @@ namespace AddressBookContact
     {
         static void Main(string[] args)
         {
-            Contact contact = new Contact();
+            Person person = new Person();
+            person.AddContact();
         }
 
     }
