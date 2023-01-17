@@ -7,115 +7,140 @@ using System.Threading.Tasks;
 
 namespace AddressBookContact
 {
-    public class Person
+    public class Person : IContact
     {
-        List<Contact> person = new List<Contact>();
-        public void AddContact()
+
+        public Dictionary<string, Contact> addressBook = new Dictionary<string, Contact>();
+        public Dictionary<string, Person> addressBookDictionary = new Dictionary<string, Person>();
+
+        public void CreateContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNumber, string BookName)
         {
             Contact contact = new Contact();
-            Console.WriteLine("Enter First Name");
-            contact.FirstName = Console.ReadLine();
-            Console.WriteLine("Enter Last Name");
-            contact.LastName = Console.ReadLine();
-            Console.WriteLine("Enter Address");
-            contact.Address = Console.ReadLine();
-            Console.WriteLine("Enter City");
-            contact.City = Console.ReadLine();
-            Console.WriteLine("Enter State");
-            contact.State = Console.ReadLine();
-            Console.WriteLine("Enter Zip code");
-            contact.Zip = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Phone Number");
-            contact.PhoneNumber = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter Email");
-            contact.Email = Console.ReadLine();
-            person.Add(contact);
-
+            contact.FirstName = firstName;
+            contact.LastName = lastName;
+            contact.Address = address;
+            contact.City = city;
+            contact.State = state;
+            contact.Zip = zip;
+            contact.Email = email;
+            contact.PhoneNumber = phoneNumber;
+            addressBookDictionary[BookName].addressBook.Add(contact.FirstName, contact);
+            Console.WriteLine("Added Succesfully");
 
         }
-        public void EditContact()
+        public void ViewContact(string name, string BookName)
         {
-            Contact contact = new Contact();
-            Console.WriteLine("To Edit the contact first name");
-            string name = Console.ReadLine();
-            foreach (var record in person)
+            foreach (KeyValuePair<string, Contact> item in addressBookDictionary[BookName].addressBook)
             {
-                if(record.FirstName == name)
+                if (item.Key.ToLower().Equals(name.ToLower()))
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(name +"is exist");
-                    Console.ResetColor();
-                    Console.WriteLine("To Edit Contact" + "\n1.LastName\n2.Address\n3.City\n4.State\n5.Zip\n6.PhoneNumber\n7.Email");
-                    int choice = Convert.ToInt32(Console.ReadLine());
-                    switch (choice)
+                    Console.WriteLine("FirstName;" + item.Value.FirstName);
+                    Console.WriteLine("LastName;" + item.Value.LastName);
+                    Console.WriteLine("Address;" + item.Value.Address);
+                    Console.WriteLine("City;" + item.Value.City);
+                    Console.WriteLine("State;" + item.Value.State);
+                    Console.WriteLine("Zip;" + item.Value.Zip);
+                    Console.WriteLine("Email;" + item.Value.Email);
+                    Console.WriteLine("PhoneNum;" + item.Value.PhoneNumber);
+                }
+            }
+        }
+        public void ViewContact(string BookName)
+        {
+            foreach (KeyValuePair<string, Contact> item in addressBookDictionary[BookName].addressBook)
+            {
+                Console.WriteLine("FirstName;" + item.Value.FirstName);
+                Console.WriteLine("LastName;" + item.Value.LastName);
+                Console.WriteLine("Address;" + item.Value.Address);
+                Console.WriteLine("City;" + item.Value.City);
+                Console.WriteLine("State;" + item.Value.State);
+                Console.WriteLine("Zip;" + item.Value.Zip);
+                Console.WriteLine("Email;" + item.Value.Email);
+                Console.WriteLine("PhoneNum;" + item.Value.PhoneNumber);
+
+            }
+
+        }
+        public void EditContact(string name, string bookName)
+        {
+            foreach (KeyValuePair<string, Contact> item in addressBookDictionary[bookName].addressBook)
+            {
+                if (item.Key.Equals(name))
+                {
+
+
+                    Console.WriteLine("Enter Field ToBE Modify\n1.FirstNmae\n2.LastName\n3.Address\n4.City\n5.State\n6.Zip\n7.Email\n8.PhoneNUmber");
+                    int option = Convert.ToInt32(Console.ReadLine());
+                    switch (option)
                     {
                         case 1:
-                            Console.WriteLine("Enter Last Name");
-                            string newLastName = Console.ReadLine();
-                            record.LastName = newLastName;
+                            Console.WriteLine("Enter the MOdifed Value");
+                            string FName = Console.ReadLine();
+                            item.Value.FirstName = FName;
                             break;
                         case 2:
-                            Console.WriteLine("Enter Address");
-                            string newAddress = Console.ReadLine();
-                            record.Address = newAddress;
+                            Console.WriteLine("Enter the MOdifed Value");
+                            string LName = Console.ReadLine();
+                            item.Value.LastName = LName;
                             break;
                         case 3:
-                            Console.WriteLine("Enter City");
-                            string newCity = Console.ReadLine();
-                            record.City = newCity;
+                            Console.WriteLine("Enter the MOdifed Value");
+                            string Add = Console.ReadLine();
+                            item.Value.Address = Add;
                             break;
                         case 4:
-                            Console.WriteLine("Enter Zip Code");
-                            int newZip = Convert.ToInt32(Console.ReadLine());
-                            record.Zip = newZip;
+                            Console.WriteLine("Enter the MOdifed Value");
+                            string city = Console.ReadLine();
+                            item.Value.City = city;
                             break;
                         case 5:
-                            Console.WriteLine("Enter State");
-                            string newState = Console.ReadLine();
-                            record.State = newState;
+                            Console.WriteLine("Enter the MOdifed Value");
+                            string StateN = Console.ReadLine();
+                            item.Value.State = StateN;
                             break;
                         case 6:
-                            Console.WriteLine("Enter PhoneNumber");
-                            long newPhoneNumber = Convert.ToInt64(Console.ReadLine());
-                            record.PhoneNumber = newPhoneNumber;
+                            Console.WriteLine("Enter the MOdifed Value");
+                            int ZipN = Convert.ToInt32(Console.ReadLine());
+                            item.Value.Zip = ZipN;
                             break;
                         case 7:
-                            Console.WriteLine("Enter Email");
-                            string newEmail = Console.ReadLine();
-                            record.Email = newEmail;
+                            Console.WriteLine("Enter the MOdifed Value");
+                            string MailID = Console.ReadLine();
+                            item.Value.Email = MailID;
                             break;
+                        case 8:
+                            Console.WriteLine("Enter the MOdifed Value");
+                            long PhnNum = Convert.ToInt64(Console.ReadLine());
+                            item.Value.PhoneNumber = PhnNum;
+                            break;
+
+
                     }
-
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Name Does not exist");
-                    Console.ResetColor();
+                    Console.WriteLine("Edited Successfully");
                 }
             }
         }
-        public void DeleteContact()
+        public void DeleteContact(string name, string BookName)
         {
-
-            Console.WriteLine("To Delete Contact From Address Book Enter FirstName Of Person");
-            string name = Console.ReadLine();
-            foreach(var record in person.ToList())
+            if (addressBookDictionary[BookName].addressBook.ContainsKey(name))
             {
-                if(record.FirstName == name)
-                {
-                    person.Remove(record);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("person details Delete Succesfully");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Given name Does not Exist in Contact");
-                    Console.ResetColor();
-                }
+                addressBookDictionary[BookName].addressBook.Remove(name);
+                Console.WriteLine("Deleted Successfully");
+            }
+            else
+            {
+                Console.WriteLine("Not found Try Again");
             }
         }
+        public void AddAddressBook(string BookName)
+        {
+            Person book = new Person();
+            addressBookDictionary.Add(BookName, book);
+            Console.WriteLine("AddressBook Created");
+        }
+        //public Dictionary<string, Person> GetaddressBook()
+        //{
+        //    return addressBookDictionary;
+        //}
     }
 }
