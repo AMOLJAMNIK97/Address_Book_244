@@ -138,9 +138,9 @@ namespace AddressBookContact
             addressBookDictionary.Add(BookName, book);
             Console.WriteLine("AddressBook Created");
         }
-        //public Dictionary<string, Person> GetaddressBook()
-        //{
-        //    return addressBookDictionary;
-        //}
+        public Dictionary<string, Person> GetaddressBook()
+        {
+            return addressBookDictionary;
+        }
     }
 }

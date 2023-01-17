@@ -14,7 +14,7 @@ namespace AddressBookContact
             Person add = new Person();
             int choice, choice2;
             string BookName = "MyBook";
-            Console.WriteLine("What whould you like to do?\n1.Work on Default AddressBook\n2.Create new AddressBook");
+            Console.WriteLine("What whould you like to do?\n1.Work on Default AddressBook\n2.Add new AddressBook");
             Console.WriteLine("Enter your Choice");
             choice2 = Convert.ToInt32(Console.ReadLine());
             switch (choice2)
