@@ -86,6 +86,25 @@ namespace AddressBookContact
                             BookName = newaddressbook;
                         }
                         break;
+                    case 7:
+                        Console.WriteLine("Enter Name Of AddressBook From Below List");
+                        foreach (KeyValuePair<string, Person> item in add.GetaddressBook())
+                        {
+                            Console.WriteLine(item.Key);
+                        }
+                        while (true)
+                        {
+                            BookName = Console.ReadLine();
+                            if (add.GetaddressBook().ContainsKey(BookName))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("No such AddressBook found. Try Again.");
+                            }
+                        }
+                        break;
                 }
             } while (choice != 8);
 
