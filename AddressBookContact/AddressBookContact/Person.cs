@@ -192,7 +192,7 @@ namespace AddressBookContact
             {
                 foreach (Contact contact in addressBookObj.addressBook.Values)
                 {
-                    addressBookObj.cityDictionary.Add(contact, contact.City);
+                    addressBookObj.cityDictionary.Add("contact", contact);
                 }
 
             }
@@ -215,7 +215,7 @@ namespace AddressBookContact
             {
                 foreach (Contact contact in addressbookobj.addressBook.Values)
                 {
-                    addressbookobj.stateDictionary.Add(contact, contact.State);
+                    addressbookobj.stateDictionary.Add("contact", contact);
                 }
             }
         }
