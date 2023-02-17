@@ -32,7 +32,7 @@ namespace AddressBookContact
             {
                 Console.WriteLine("Working On {0} AddressBook", BookName);
                 Console.WriteLine("choice an option \n 1.AddContact\n2.Edit Contact\n3.DeleteContact\n4.ViewContact\n" +
-                    "5.View All COntact\n6.Add New AddressBook\n7.Swich addressBook\n8.Exit Application");
+                    "5.View All COntact\n6.Add New AddressBook\n7.Swich addressBook\n8.Search Contact By City/State\n9.Exit Application");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -103,6 +103,24 @@ namespace AddressBookContact
                             {
                                 Console.WriteLine("No such AddressBook found. Try Again.");
                             }
+                        }
+                        break;
+                    case 8:
+                        Console.WriteLine("Would you Like To " + "\n1.Search by city \n2.Search by state");
+                        int opt = Convert.ToInt32(Console.ReadLine());
+                        switch (opt)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter City : ");
+                                add.SearchPersonByCity(Console.ReadLine());
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter State : ");
+                                add.SearchPersonByState(Console.ReadLine());
+                                break;
+                            default:
+                                Console.WriteLine("Invalid Input");
+                                break;
                         }
                         break;
                 }

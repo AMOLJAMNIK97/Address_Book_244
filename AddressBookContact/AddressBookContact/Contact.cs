@@ -40,5 +40,10 @@ namespace AddressBookContact
                 return FirstName.Equals(contact.FirstName) && LastName.Equals(contact.LastName);
             }
         }
+        public override string ToString()
+        {
+            return "FirstName : " + FirstName + "\nLast Name : " + LastName + "\nCity: " + City +
+                "\nState :" + State + "\nZip :" + Zip + "\nEmail :" + Email + "\nPhone Number :" + PhoneNumber;
+        }
     }
 }
